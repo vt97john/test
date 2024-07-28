@@ -1,0 +1,7 @@
+<!-- A container component can enforce a certain ordering of 
+ components.  If another component uses the container to display
+ some compoentns, then the container will arrange them properly-->
+
+<ng-content select="app-employee"></ng-content>
+<ng-content></ng-content>
+<ng-content select="app-rooms"></ng-content>

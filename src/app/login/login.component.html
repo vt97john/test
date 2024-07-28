@@ -1,0 +1,14 @@
+<form (ngSubmit)="login()">
+    <div>
+        <input appHover onColor="lightyellow" offColor="white" #emailField="ngModel" appEmailvalidator type="email" name="email" [(ngModel)]="email" required class="form-control">
+    </div>
+    <div>
+        {{emailField.errors | json}}
+    </div>
+    <div>
+        <input appHover onColor="lightyellow" offColor="white" type="password" name="password" [(ngModel)]="password" required class="form-control">
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+</form>
