@@ -1,0 +1,34 @@
+<!-- Property Binding-->
+<app-header></app-header>
+<!-- <div [hidden]="hideRooms">
+    Number of rooms: <div [innerText]="roomCounts.totalRooms"></div> 
+</div>   -->
+
+<!-- <div>Available Rooms:
+    <div [ngStyle]="{'color': roomCounts.availableRooms > 0 ? 'green' : 'red'}">
+        {{roomCounts?.availableRooms ?? 'No rooms available'}}
+        {{roomCounts | json}}
+    </div>
+</div> -->
+
+<div>
+    <button (click)="addRoom()" type="button" class="btn btn-primary">Add Room</button>
+    <!-- <button (click)="editRoom()" type="button" class="btn btn-primary">Edit Room</button> -->
+    <!-- <button (click)="deleteRoom()" type="button" class="btn btn-primary">Delete Room</button> -->
+</div>
+<!-- <h5>{{totalBytes / 1000 / 1000 | number:'1.0-2'}} MB loaded ...</h5> -->
+
+
+<div><input type="number" class="form-control" placeholder="Price" [formControl]="priceFilter"></div>
+
+<div *ngIf="roomCounts.availableRooms > 0 && !hideRooms"><!-- newer angular has @if-->
+    <app-rooms-list [title] = "'Room List'" [rooms]="roomsArray" [price]="priceFilter.value" (roomSelected)="selectRoom($event)"></app-rooms-list><!-- rooms array is passed to child component. 
+                                                          another way to communicate would be through service-->
+</div>
+{{getError$ | async}}
+<!-- Event Binding-->
+
+<!-- <button (click)="loadPhotos()" >Load Photos</button> <br><br> -->
+<!-- <button (click)="toggle()" >Hide Rooms</button>  -->
+
+<router-outlet></router-outlet>

@@ -1,0 +1,42 @@
+<!-- Valid: {{roomForm.valid | json}}<br>
+
+Touched: {{roomForm.touched | json}} <br>
+
+Pristine: {{roomForm.pristine | json}}<br>
+
+Errors: {{roomForm.errors| json}}<br> -->
+
+
+
+<div *ngIf ="successMessage !== ''" class="alert alert-success">{{successMessage}}</div>
+<div *ngIf ="errorMessage !== ''" class="alert alert-danger">{{errorMessage}}</div>
+
+<!-- below we shoe some validators.  there are also validators for things like email and regex patterns-->
+<form #roomForm="ngForm" (ngSubmit)="addRoom(roomForm)">
+    <div class="form-group">
+        <input required type="text" class="form-control" id="roomType" placeholder="Room Type" [(ngModel)]="room.roomType" name="roomType">
+    </div>
+    <div class="form-group">
+        <input #roomAmmenities="ngModel" minlength="5" maxlength="20" required type="text" class="form-control" id="amenities" placeholder="Amenities" [(ngModel)]="room.amenities" name="amenities">
+    </div>
+    <div *ngIf="roomAmmenities.errors?.['minlength'] && roomAmmenities.touched" class="alert alert-danger">Room Type min.length of 5</div>       
+
+    <div class="form-group">
+        <input required type="number" class="form-control" id="price" placeholder="Price per Night" [(ngModel)]="room.price" name="price">
+    </div>
+    <div class="form-group">
+        <input required type="text" class="form-control" id="photos" placeholder="Photos URL" [(ngModel)]="room.photos" name="photos">
+    </div>
+    <div class="form-group">
+        <input type="datetime-local" class="form-control" id="checkinTime" placeholder="Check-in Time" [(ngModel)]="room.checkinTime" name="checkinTime">
+    </div>
+    <div class="form-group">
+        <input type="datetime-local" class="form-control" id="checkoutTime" placeholder="Check-out Time" [(ngModel)]="room.checkoutTime" name="checkoutTime">
+    </div>
+    <div class="form-group">
+        <input #roomRating="ngModel" required min="1" max="5" type="number" class="form-control" id="rating" placeholder="Rating" [(ngModel)]="room.rating" name="rating">
+    </div>
+    <div *ngIf="roomRating.errors?.['min'] || roomRating.errors?.['max']" class="alert alert-danger">Room rating 1-5 required.</div>       
+
+    <button type="submit" class="btn btn-primary" [disabled]="roomForm.invalid">Submit</button>
+</form>
