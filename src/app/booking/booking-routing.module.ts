@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BookingComponent } from './booking.component';
-import { bookingGuard } from '../guards/booking.guard';
+import { BookingGuard } from '../guards/booking.guard';
 
 const routes: Routes = [
-  { path: ':roomNumber', component: BookingComponent, canDeactivate: [bookingGuard] },
+  { path: ':roomNumber', component: BookingComponent, canDeactivate: [BookingGuard] },
   { path: '', component: BookingComponent }
 ];
 
